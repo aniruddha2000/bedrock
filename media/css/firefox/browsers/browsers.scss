@@ -1,0 +1,371 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
+$font-path: '/media/fonts';
+$image-path: '/media/protocol/img';
+
+@import '../../protocol/components/state-fxa';
+@import '../../../protocol/css/includes/lib';
+@import '../../../protocol/css/components/emphasis-box';
+@import '../../../protocol/css/components/feature-card';
+@import '../../../protocol/css/components/hero';
+@import '../../../protocol/css/components/menu-list';
+@import '../../../protocol/css/components/zap';
+
+
+//* -------------------------------------------------------------------------- */
+// Protocol over-rides for the whole page
+
+.mzp-t-dark {
+    @include light-links;
+    color: $color-white;
+}
+
+.mzp-c-hero {
+    padding: 0;
+}
+
+.mzp-c-hero-desc {
+    &,
+    & p {
+        margin-bottom: 0;
+    }
+}
+
+.mzp-c-hero-image {
+    display: none;
+
+    @media #{$mq-md} {
+        display: block;
+    }
+}
+
+.mzp-c-menu-list {
+    // match the bottom margin of <p>
+    margin-bottom: 1.25em;
+}
+
+.mzp-c-menu-list-title {
+    margin-bottom: 0;
+}
+
+// vertical spacing
+main .mzp-l-content {
+    padding-bottom: $layout-md;
+    padding-top: $layout-md;
+
+    @media #{$mq-md} {
+        padding-top: $layout-lg;
+        padding-bottom: $layout-lg;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+
+.c-intro {
+    text-align: center;
+
+    h1 {
+        @include text-display-xl;
+    }
+
+    p {
+        @include text-body-lg;
+        margin-bottom: 0;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+
+.c-landing-grid-item {
+    margin-bottom: $layout-md * 2; // vertical spacing
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &.c-landing-grid-wide {
+        max-width: 100%;
+    }
+
+    > p:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.c-landing-grid-title {
+    @include text-display-xs;
+    margin-top: $spacing-xl;
+    margin-bottom: $spacing-md;
+
+    a {
+        color: $color-off-black;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    + p {
+        margin-bottom: $spacing-xl;
+    }
+}
+
+.c-landing-grid-img {
+    display: block;
+    margin: 0 auto;
+}
+
+@media #{$mq-sm} {
+    .c-landing-grid-img {
+        max-width: $content-xs;
+    }
+}
+
+@media #{$mq-md} {
+    // two column grid for browsers that don't support display:grid
+    // works in RTL without bidi styles \o/
+    .c-landing-grid-item {
+        float: left;
+        margin-bottom: $layout-lg * 2; // vertical spacing
+        margin-left: $layout-md;
+        max-width: 100%;
+        width: calc(50% - #{$layout-md / 2}) ;
+
+        &:nth-child(odd) {
+            clear: left;
+            margin-left: 0;
+        }
+
+        &.c-landing-grid-wide {
+            width: 100%;
+        }
+    }
+
+    // two column grid for browsers that do support grid
+    @supports (display:grid) {
+        .c-landing-grid {
+            @include grid-column-gap($layout-md);
+            @include grid-row-gap(#{$layout-lg * 2});
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr) );
+        }
+
+        .c-landing-grid:after {
+            // need to remove :after added by .mzp-l-content or we get an extra grid row
+            // added for clearfix purposes but grids don't need a clearfix
+            content: none;
+        }
+
+        .c-landing-grid-item {
+            width: auto; // over-ride 50% width for float layout
+            margin-left: 0;
+            margin-bottom: 0; // vertical spacing now set as row-gap instead of margin-bottom
+        }
+
+        .c-landing-grid-img {
+            max-width: 100%;
+        }
+
+        .c-landing-grid-wide {
+            grid-column: span 2;
+        }
+    }
+}
+
+ // three column grid for browsers that do support grid
+ @media #{$mq-lg} {
+      @supports (display:grid) {
+        .c-landing-grid {
+            @include grid-row-gap(#{$layout-lg * 2});
+            grid-template-columns: repeat(3, minmax(0, 1fr) );
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+
+#card-desktop-download {
+    margin: 0 0 1.25em 0;
+
+    .mzp-t-small {
+        padding: $spacing-xs $spacing-md;
+    }
+
+    & .download-list {
+        margin: 0;
+    }
+
+    & .fx-privacy-link {
+        display: none;
+    }
+}
+
+// app store links when user visits in apprpriate OS
+.appstore-android,
+.appstore-ios {
+    display: none;
+    margin-bottom: 1.25em;
+
+    img {
+        display: block;
+    }
+}
+
+.android .appstore-android {
+    display: block;
+}
+
+.ios .appstore-ios {
+    display: block;
+}
+
+.ios,
+.android {
+    #menu-mobile-wrapper,
+    #card-desktop-download {
+        display: none;
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+
+.t-dev {
+    background-color: $color-gray-20;
+    padding: $layout-md;
+    margin-top: $layout-md + $layout-2xl;
+
+    .mzp-c-card-feature-title {
+        @include visually-hidden;
+    }
+
+    .mzp-c-card-feature {
+        margin-bottom: 0;
+    }
+
+    .mzp-c-card-feature-media {
+        margin-top: $layout-2xl * -1;
+    }
+}
+
+.c-dev-title {
+    @include text-display-sm;
+    @include font-firefox;
+    font-weight: bold;
+}
+
+@media #{$mq-sm} {
+    .t-dev {
+        max-width: $content-xs;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media #{$mq-md} {
+    .t-dev {
+        margin-top: 0;
+        max-width: 100%;
+
+        .mzp-c-card-feature-media {
+            margin-top: 0;
+        }
+    }
+}
+
+//* -------------------------------------------------------------------------- */
+
+.t-account {
+    background: linear-gradient($color-violet-50 -100%, $color-off-black);
+    margin: 0 0 $layout-md 0;
+
+    @media #{$mq-md} {
+        margin-bottom: $layout-lg;
+    }
+
+    @media #{$mq-lg} {
+        background: url('/media/img/firefox/browsers/fxa.svg'), linear-gradient($color-violet-50 -100%, $color-off-black);
+        background-repeat: no-repeat;
+        background-position: center right $layout-sm, top left;
+        background-size: calc(33% - #{$layout-sm + $layout-lg}) auto, auto;
+        padding-right: 33%;
+    }
+}
+
+.fxa-form-cta {
+    @include text-body-xs;
+}
+
+.fxa-email-form-title {
+    @include font-size(24px);
+    margin-bottom: $spacing-xl;
+}
+
+.fxa-email-form-intro {
+    display: none;
+}
+
+.fxa-email-field-container {
+    .field {
+        label {
+            @include text-body-sm;
+        }
+
+        input[type="email"] {
+            box-shadow: none;
+            padding: 12px 16px;
+            width: 100%;
+        }
+    }
+
+    .mzp-c-button {
+        width: 100%;
+    }
+
+    @media #{$mq-md} {
+        @supports(display:grid) {
+            & {
+                @include grid-column-gap($spacing-lg);
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                grid-template-rows: auto auto auto;
+            }
+
+            .field {
+                grid-column-start: 1;
+                grid-row-start: 1;
+                grid-row-end: 3;
+                margin-bottom: 0;
+
+                label {
+                    margin-bottom: $spacing-sm;
+                }
+            }
+
+            .agreement {
+                grid-column-start: 1;
+                grid-row-start: 3;
+                grid-row-end: 4;
+                margin-top: $spacing-sm;
+                margin-bottom: 0;
+            }
+
+            .mzp-c-button {
+                grid-column-start: 2;
+                grid-row-start: 2;
+                grid-row-end: 3;
+            }
+        }
+    }
+}
+
+.account-signin {
+    margin-top: $spacing-xl;
+    margin-bottom: 0;
+}
