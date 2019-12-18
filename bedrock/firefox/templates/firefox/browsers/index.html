@@ -37,7 +37,17 @@
       {{ high_res_img('img/firefox/browsers/desktop.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.new') }}">{{ _('Desktop') }}</a></h2>
       <p>{{ _('Seriously private browsing. Firefox automatically blocks 2000+ online trackers from collecting information about what you do online.') }}</p>
-      {{ download_firefox(dom_id='card-desktop-download', button_color='mzp-t-small', alt_copy=_('Download'), download_location='card') }}
+
+      <p>
+        <!--[if IE]>
+          <a href="{{ url('firefox.new') }}">{{ _('Download') }}</a>
+        <![endif]-->
+        <!--[if !IE]><!-->
+          {# Download link should be locale neutral see issue 7982 #}
+          <a class="mzp-c-cta-link cta-download" href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ _('Download') }}</a></li>
+        <!--<![endif]-->
+      </p>
+
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.new') }}">{{ _('Learn more') }}</a></p>
     </div>
     <div class="c-landing-grid-item">

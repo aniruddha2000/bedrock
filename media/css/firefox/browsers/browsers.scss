@@ -191,19 +191,36 @@ main .mzp-l-content {
 
 //* -------------------------------------------------------------------------- */
 
-#card-desktop-download {
-    margin: 0 0 1.25em 0;
+@function download-arrow($color) {
+    $svg: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"><g transform="translate(6.000000, 3.000000)" stroke="#{$color}" stroke-width="2"><path d="M0,18 L12,18"></path><polyline stroke-linejoin="round" points="0 8 6 14 12 8"></polyline><path d="M6,0 L6,14"></path></g></g></svg>';
+    @return $svg;
+}
 
-    .mzp-t-small {
-        padding: $spacing-xs $spacing-md;
+$download-link: download-arrow($color-link);
+$download-link-hover: download-arrow($color-link-hover);
+$url-download-link: svg-url($download-link);
+$url-download-link-hover: svg-url($download-link-hover);
+
+.cta-download {
+    position: relative;
+    padding-right: 24px;
+
+    &:after {
+        @include background-size(23px);
+        @include bidi(((right, 0, left, auto),));
+        background-image: $url-download-link;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+        bottom: 0;
+        content: '';
+        display: inline-block;
+        height: 23px;
+        position: absolute;
+        width: 16px;
     }
 
-    & .download-list {
-        margin: 0;
-    }
-
-    & .fx-privacy-link {
-        display: none;
+    &:hover:after {
+        background-image: $url-download-link-hover;
     }
 }
 
