@@ -43,11 +43,11 @@
 
       <p>
         <!--[if IE]>
-          <a href="{{ url('firefox.new') }}">{{ _('Download') }}</a>
+          <a href="{{ url('firefox.new') }}">{{ _('Download for Desktop') }}</a>
         <![endif]-->
         <!--[if !IE]><!-->
           {# Download link should be locale neutral see issue 7982 #}
-          <a class="mzp-c-cta-link cta-download" href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ _('Download') }}</a></li>
+          <a class="mzp-c-cta-link cta-download" href="/firefox/download/thanks/" data-link-type="Desktop" data-download-os="Desktop" data-download-version="standard">{{ _('Download for Desktop') }}</a></li>
         <!--<![endif]-->
       </p>
 
@@ -67,7 +67,7 @@
         </a>
       </div>
       <div id="menu-mobile-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
-        <h3 class="mzp-c-menu-list-title">{{ _('Download') }}</h3>
+        <h3 class="mzp-c-menu-list-title">{{ _('Download for Mobile') }}</h3>
         <ul class="mzp-c-menu-list-list" id="menu-mobile">
           <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('android', 'firefox_browsers') }}" rel="external noopener" data-link-type="download" data-display-name="Android" data-download-version="android" data-download-os="Android">Android</a></li>
           <li class="mzp-c-menu-list-item"><a href="{{ firefox_adjust_url('ios', 'firefox_browsers') }}" rel="external noopener" data-link-type="download" data-display-name="iOS" data-download-version="ios" data-download-os="iOS">iOS</a></li>
