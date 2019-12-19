@@ -452,22 +452,38 @@ $url-download-link-hover: svg-url($download-link-hover);
 .t-account {
     background: linear-gradient($color-violet-50 -100%, $color-off-black);
     margin: 0 0 $layout-md 0;
+    position: relative;
 
     @media #{$mq-md} {
         margin-bottom: $layout-lg;
     }
 
     @media #{$mq-lg} {
-        background: url('/media/img/firefox/browsers/fxa.svg'), linear-gradient($color-violet-50 -100%, $color-off-black);
-        background-repeat: no-repeat;
-        background-position: center right $layout-sm, top left;
-        background-size: calc(33% - #{$layout-sm + $layout-lg}) auto, auto;
-        padding-right: 33%;
+        &:after {
+            content: '';
+            background: url('/media/img/firefox/browsers/fxa.svg') center center no-repeat;
+            background-size: contain;
+            display: block;
+            position: absolute;
+            top: $layout-md;
+            right: $layout-md;
+            bottom: $layout-md;
+            left: calc(560px + #{$layout-md * 2});
+        }
+    }
+
+    @media #{$mq-xl} {
+        &:after {
+            background-size: auto;
+        }
     }
 }
 
+//* --- */
+
 .fxa-form-cta {
     @include text-body-xs;
+    max-width: 560px;
 }
 
 .fxa-email-form-title {
@@ -501,7 +517,7 @@ $url-download-link-hover: svg-url($download-link-hover);
             & {
                 @include grid-column-gap($spacing-lg);
                 display: grid;
-                grid-template-columns: 2fr 1fr;
+                grid-template-columns: 1fr min-content;
                 grid-template-rows: auto auto auto;
             }
 
