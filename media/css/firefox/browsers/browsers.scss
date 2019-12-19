@@ -400,6 +400,12 @@ $url-download-link-hover: svg-url($download-link-hover);
     .mzp-c-card-feature-media {
         margin-top: $layout-2xl * -1;
     }
+
+    .mzp-c-card-feature-desc {
+        p:last-child {
+            margin-bottom: 0;
+        }
+    }
 }
 
 .c-dev-title {
@@ -418,6 +424,7 @@ $url-download-link-hover: svg-url($download-link-hover);
 
 @media #{$mq-md} {
     .t-dev {
+        border-radius: 4px;
         margin-top: 0;
         max-width: 100%;
 
@@ -426,6 +433,19 @@ $url-download-link-hover: svg-url($download-link-hover);
         }
     }
 }
+
+@media (min-width:#{$screen-lg}) and (max-width:#{$screen-xl - 1px}) {
+    .t-dev {
+        .mzp-c-card-feature.mzp-l-card-feature-left-half {
+            display: block;
+        }
+
+        .mzp-c-card-feature-media {
+            display: none;
+        }
+    }
+}
+
 
 //* -------------------------------------------------------------------------- */
 
