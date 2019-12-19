@@ -23,14 +23,17 @@
 {% block content %}
 <main role="main">
 
-  {% call hero(
-    title='Get the <strong>browsers</strong> that put your privacy first — and always have'|safe,
-    desc='Get the privacy you deserve. Enhanced Tracking Protection is automatic in every Firefox browser.',
-    image_url='img/firefox/browsers/hero.jpg',
-    heading_level=1,
-    class='mzp-has-zap-11'
-  ) %}
-  {% endcall %}
+  <div class="c-block has-media-hide">
+    <div class="c-block-container">
+      <div class="c-block-body l-v-center">
+        <h1 class="mzp-has-zap-11">{{ _('Get the <strong>browsers</strong> that put your privacy first — and always have') }}</h1>
+        <p>Get the privacy you deserve. Enhanced Tracking Protection is automatic in every Firefox browser.</p>
+      </div>
+      <div class="c-block-media l-fit-flush l-constrain-height">
+        {{ high_res_img('img/firefox/browsers/hero.jpg', {'alt': '', 'class': 'c-block-media-img'}) }}
+      </div>
+    </div>
+  </div>
 
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
