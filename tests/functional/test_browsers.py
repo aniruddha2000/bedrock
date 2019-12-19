@@ -4,10 +4,10 @@
 
 import pytest
 
-from pages.firefox.browsers import FirefoxBrowsersPage
+from pages.browser import BrowserPage
 
 
 @pytest.mark.nondestructive
-def test_primary_download_button_displayed(base_url, selenium):
-    page = FirefoxBrowsersPage(selenium, base_url).open()
-    assert page.is_primary_download_button_displayed
+def test_download_button_is_displayed(base_url, selenium):
+    page = BrowserPage(selenium, base_url).open()
+    assert page.download_button.is_displayed

@@ -5,15 +5,13 @@
 from selenium.webdriver.common.by import By
 
 from pages.firefox.base import FirefoxBasePage
-from pages.regions.modal import Modal
-from pages.regions.send_to_device import SendToDevice
 
 
 class FirefoxBrowsersPage(FirefoxBasePage):
 
     URL_TEMPLATE = '/{locale}/firefox/browsers/'
 
-    _primary_download_button_locator = (By.ID, 'card-desktop-download')
+    _primary_download_button_locator = (By.ID, 'qa-desktop-download')
 
     @property
     def is_primary_download_button_displayed(self):
