@@ -248,15 +248,15 @@ main .mzp-l-content {
     }
 }
 
+// two column grid for browsers that don't support display:grid
+// works in RTL without bidi styles \o/
 @media #{$mq-md} {
-    // two column grid for browsers that don't support display:grid
-    // works in RTL without bidi styles \o/
     .c-landing-grid-item {
         float: left;
-        margin-bottom: $layout-lg * 2; // vertical spacing
-        margin-left: $layout-md;
+        margin-bottom: $v-grid-md * 2;
+        margin-left: $h-grid-md;
         max-width: 100%;
-        width: calc(50% - #{$layout-md / 2}) ;
+        width: calc(50% - #{$h-grid-md / 2}) ;
 
         &:nth-child(odd) {
             clear: left;
@@ -267,12 +267,24 @@ main .mzp-l-content {
             width: 100%;
         }
     }
+}
 
-    // two column grid for browsers that do support grid
-    @supports (display:grid) {
+@media #{$mq-lg} {
+    .c-landing-grid-item {
+        margin-bottom: $v-grid-lg * 2;
+        margin-left: $h-grid-lg;
+        width: calc(50% - #{$h-grid-lg / 2}) ;
+    }
+}
+
+// column grid for browsers that do support grid
+@supports (display:grid) {
+
+    // two column
+    @media #{$mq-md} {
         .c-landing-grid {
-            @include grid-column-gap($layout-md);
-            @include grid-row-gap(#{$layout-lg * 2});
+            @include grid-column-gap($h-grid-md);
+            @include grid-row-gap(#{$v-grid-md * 2});
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr) );
         }
@@ -284,7 +296,7 @@ main .mzp-l-content {
         }
 
         .c-landing-grid-item {
-            width: auto; // over-ride 50% width for float layout
+            width: auto; // over-ride 50% width from float layout
             margin-left: 0;
             margin-bottom: 0; // vertical spacing now set as row-gap instead of margin-bottom
         }
@@ -297,14 +309,12 @@ main .mzp-l-content {
             grid-column: span 2;
         }
     }
-}
 
- // three column grid for browsers that do support grid
- @media #{$mq-lg} {
-      @supports (display:grid) {
+     // three column
+    @media #{$mq-lg} {
         .c-landing-grid {
-            @include grid-column-gap($layout-lg);
-            @include grid-row-gap(#{$layout-lg * 2});
+            @include grid-column-gap($h-grid-lg);
+            @include grid-row-gap(#{$v-grid-lg * 2});
             grid-template-columns: repeat(3, minmax(0, 1fr) );
         }
     }
