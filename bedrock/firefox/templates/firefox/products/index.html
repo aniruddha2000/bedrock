@@ -5,7 +5,7 @@
 {% add_lang_files "firefox/products" %}
 
 {% extends "firefox/base/base-protocol.html" %}
-{% from "macros.html" import google_play_button, fxa_email_form, fxa_link_fragment with context %}
+{% from "macros.html" import monitor_button, google_play_button, fxa_email_form, fxa_link_fragment with context %}
 {% from "macros-protocol.html" import hero, feature_card with context %}
 
 {% block page_title %}{{ _('Firefox - Protect your life online with privacy-first products') }}{% endblock %}
@@ -41,7 +41,14 @@
       <h2 class="c-landing-grid-title"><a href="https://monitor.firefox.com{{ referrals }}">Firefox Monitor</a></h2>
       <p>{{ _('See if your personal information has been compromised in a corporate data breach, and sign up for future alerts.') }}</p>
       <p><a class="mzp-c-cta-link" href="https://monitor.firefox.com/{{ referrals }}">{{ _('Check for breaches') }}</a></p>
-      <p><a class="mzp-c-cta-link" href="TKTK">{{ _('Sign up for breach monitoring') }}</a></p>
+      {{ monitor_button(
+        entrypoint='mozilla.org-firefox-products',
+        utm_campaign='firefox-products',
+        button_text=_('Sign up for breach alerts'),
+        cta_type='fxa-monitor',
+        cta_position='card',
+        button_class='mzp-c-cta-link'
+      ) }}
     </div>
     <div class="c-landing-grid-item">
       {{ high_res_img('img/firefox/browsers/desktop.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
@@ -70,31 +77,29 @@
       <div id="menu-lockwise-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h3 class="mzp-c-menu-list-title">{{ _('Download Lockwise') }}</h3>
         <ul class="mzp-c-menu-list-list" id="menu-lockwise">
-          <li class="mzp-c-menu-list-item hidden" id="js-lockwise-desktop"><button class="" id="lockwise-button" data-cta-type="lockwise-open-in-fx" data-cta-position="card" type="button">Open in Firefox</button>?</li>
+          <li class="mzp-c-menu-list-item hidden" id="js-lockwise-desktop"><button class="c-menu-list-link" id="lockwise-button" data-cta-type="lockwise-open-in-fx" data-cta-position="card" type="button">Open in Firefox</button></li>
           <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('android', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise Android">Android</a></li>
           <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('ios', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise iOS">iOS</a></li>
-          <!-- TODO <li class="mzp-c-menu-list-item"><button>Email me a link</button></li> -->
         </ul>
       </div>
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.lockwise.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">{{ _('Learn more about Lockwise') }}</a></p>
     </div>
     <div class="c-landing-grid-item">
-        <img src="{{ static('img/firefox/products/send.svg') }}" class="c-landing-grid-img" alt="">
+      <img src="{{ static('img/firefox/products/send.svg') }}" class="c-landing-grid-img" alt="">
       <h2 class="c-landing-grid-title"><a href="https://send.firefox.com{{ referrals }}">Firefox Send</a></h2>
       <p>{{ _('Send your large files and sensitive documents safely, up to 2.5G.') }}</p>
       <p><a class="mzp-c-cta-link" href="https://send.firefox.com{{ referrals }}">{{ _('Send a file') }}</a></p>
     </div>
     <div class="c-landing-grid-item">
-        <img src="{{ static('img/firefox/products/pocket.svg') }}" class="c-landing-grid-img" alt="">
+      <img src="{{ static('img/firefox/products/pocket.svg') }}" class="c-landing-grid-img" alt="">
       <h2 class="c-landing-grid-title"><a href="https://send.firefox.com{{ referrals }}">Pocket</a></h2>
       <p>{{ _('Discover the best content on the web — and consume it wherever and whenever you want.') }}</p>
       <div id="menu-pocket-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h3 class="mzp-c-menu-list-title">{{ _('Get Pocket') }}</h3>
         <ul class="mzp-c-menu-list-list" id="menu-pocket">
-          <li>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text=_('Desktop'), class_name='class-test', optional_parameters={'s': _source, 'utm_campaign': _utm_campaign}, optional_attributes={'data-cta-text': 'Pocket Desktop', 'data-cta-type': 'button', 'data-cta-position': 'card'}) }}</li>
+          <li class="mzp-c-menu-list-item t-web"><a href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">{{ _('Desktop') }}</a></li>
           <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('android', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket Android">Android</a></li>
           <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('ios', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket iOS">iOS</a></li>
-          <!-- TODO <li class="mzp-c-menu-list-item"><button>Email me a link</button></li> -->
         </ul>
       </div>
 
