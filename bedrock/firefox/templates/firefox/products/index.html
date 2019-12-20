@@ -23,32 +23,35 @@
 {% block content %}
 <main role="main">
 
-  {% call hero(
-    title='Firefox is <strong>more</strong> than a browser'|safe,
-    desc='It’s a whole family of products designed to keep you safer and smarter online.',
-    image_url='img/firefox/browsers/hero.jpg',
-    heading_level=1,
-    class='mzp-has-zap-11'
-  ) %}
-  {% endcall %}
+  <div class="c-block has-media-hide t-products">
+    <div class="c-block-container">
+      <div class="c-block-body l-v-center">
+        <h1 class="mzp-has-zap-14">{{ _('Firefox is <strong>more</strong> than a browser') }}</h1>
+        <p>{{ _('It’s a whole family of products designed to keep you safer and smarter online.') }}</p>
+      </div>
+      <div class="c-block-media l-fit-flush-top l-constrain-width">
+        {{ high_res_img('img/firefox/products/hero.jpg', {'alt': '', 'class': 'c-block-media-img', 'width': '670', 'height': '464'}) }}
+      </div>
+    </div>
+  </div>
 
   <div class="mzp-l-content c-landing-grid">
     <div class="c-landing-grid-item">
       <img src="{{ static('img/firefox/products/monitor.svg') }}" class="c-landing-grid-img" alt="">
       <h2 class="c-landing-grid-title"><a href="https://monitor.firefox.com{{ referrals }}">Firefox Monitor</a></h2>
       <p>{{ _('See if your personal information has been compromised in a corporate data breach, and sign up for future alerts.') }}</p>
-      <p><a class="mzp-c-cta-link" href="TKTK">{{ _('Sign up for Breach Alerts') }}</a></p>
-      <p><a class="mzp-c-cta-link" href="TKTK">{{ _('Check for Breaches') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="https://monitor.firefox.com/{{ referrals }}">{{ _('Check for breaches') }}</a></p>
+      <p><a class="mzp-c-cta-link" href="TKTK">{{ _('Sign up for breach monitoring') }}</a></p>
     </div>
     <div class="c-landing-grid-item">
       {{ high_res_img('img/firefox/browsers/desktop.jpg', {'alt': '', 'class': 'c-landing-grid-img', 'width': '327', 'height': '223'}) }}
-      <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="TKTK">{{ _('Firefox browsers') }}</a></h2>
+      <h2 class="c-landing-grid-title "><a class="mzp-c-cta-link" href="{{ url('firefox.browsers.index') }}">{{ _('Firefox browsers') }}</a></h2>
       <p>{{ _('Get the browsers that block 2000+ data trackers automatically. Enhanced Tracking Protection comes standard in every Firefox browser.') }}</p>
-      <div id="test-menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+      <div id="menu-browsers-wrapper" class="mzp-c-menu-list mzp-t-cta mzp-t-download">
         <h3 class="mzp-c-menu-list-title">{{ _('Download') }}</h3>
         <ul class="mzp-c-menu-list-list" id="menu-browsers">
           <!--[if IE]>
-            <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.new') }}">TKTK</a></li>
+            <li class="mzp-c-menu-list-item"><a href="{{ url('firefox.new') }}">{{ _('Desktop') }}</a></li>
           <![endif]-->
           <!--[if !IE]><!-->
             {# Download link should be locale neutral see issue 7982 #}
@@ -64,7 +67,15 @@
       <img src="{{ static('img/firefox/products/lockwise.svg') }}" class="c-landing-grid-img" alt="">
       <h2 class="c-landing-grid-title"><a href="{{ url('firefox.lockwise.lockwise') }}">Firefox Lockwise</a></h2>
       <p>{{ _('Keep your passwords safe, and access them across all your synced devices.') }}</p>
-      TKTK: download drop down
+      <div id="menu-lockwise-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+        <h3 class="mzp-c-menu-list-title">{{ _('Download Lockwise') }}</h3>
+        <ul class="mzp-c-menu-list-list" id="menu-lockwise">
+          <li class="mzp-c-menu-list-item hidden" id="js-lockwise-desktop"><button class="" id="lockwise-button" data-cta-type="lockwise-open-in-fx" data-cta-position="card" type="button">Open in Firefox</button>?</li>
+          <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('android', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise Android">Android</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ lockwise_adjust_url('ios', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Lockwise iOS">iOS</a></li>
+          <!-- TODO <li class="mzp-c-menu-list-item"><button>Email me a link</button></li> -->
+        </ul>
+      </div>
       <p><a class="mzp-c-cta-link" href="{{ url('firefox.lockwise.lockwise') }}" rel="external noopener" data-cta-type="link" data-cta-text="Lockwise Learn More">{{ _('Learn more about Lockwise') }}</a></p>
     </div>
     <div class="c-landing-grid-item">
@@ -77,8 +88,17 @@
         <img src="{{ static('img/firefox/products/pocket.svg') }}" class="c-landing-grid-img" alt="">
       <h2 class="c-landing-grid-title"><a href="https://send.firefox.com{{ referrals }}">Pocket</a></h2>
       <p>{{ _('Discover the best content on the web — and consume it wherever and whenever you want.') }}</p>
-      TODO: downlaod app drop download
-      <p><a class="mzp-c-cta-link" href="https://getpocket.com/signup/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Download for iOS">{{ _('Learn more about Pocket') }}</a></p>
+      <div id="menu-pocket-wrapper"  class="mzp-c-menu-list mzp-t-cta mzp-t-download">
+        <h3 class="mzp-c-menu-list-title">{{ _('Get Pocket') }}</h3>
+        <ul class="mzp-c-menu-list-list" id="menu-pocket">
+          <li>{{ pocket_fxa_button(entrypoint=_entrypoint, button_text=_('Desktop'), class_name='class-test', optional_parameters={'s': _source, 'utm_campaign': _utm_campaign}, optional_attributes={'data-cta-text': 'Pocket Desktop', 'data-cta-type': 'button', 'data-cta-position': 'card'}) }}</li>
+          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('android', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket Android">Android</a></li>
+          <li class="mzp-c-menu-list-item"><a href="{{ pocket_adjust_url('ios', 'firefox_products') }}" rel="external noopener" data-cta-type="link" data-cta-text="Download Pocket iOS">iOS</a></li>
+          <!-- TODO <li class="mzp-c-menu-list-item"><button>Email me a link</button></li> -->
+        </ul>
+      </div>
+
+      <p><a class="mzp-c-cta-link" href="https://getpocket.com/firefox_learnmore/{{ referrals }}" rel="external noopener" data-cta-type="link" data-cta-text="Pocket">{{ _('Learn more about Pocket') }}</a></p>
     </div>
   </div>
 

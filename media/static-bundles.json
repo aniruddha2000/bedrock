@@ -1248,7 +1248,8 @@
         "js/base/mozilla-fxa-form.js",
         "js/base/mozilla-fxa-form-init.js",
         "js/base/mozilla-fxa-sign-in-link.js",
-        "js/firefox/browsers.js"
+        "js/base/uitour-lib.js",
+        "js/firefox/browsers/browsers.js"
       ],
       "name": "firefox-browsers"
     },

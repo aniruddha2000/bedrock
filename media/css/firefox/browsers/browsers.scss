@@ -80,6 +80,10 @@ main .mzp-l-content {
 
     @media #{$mq-lg} {
         padding: $v-grid-lg 0;
+
+        &.t-products {
+            padding: 0;
+        }
     }
 }
 
@@ -167,6 +171,10 @@ main .mzp-l-content {
 
             &.l-fit-flush {
                 margin: ($v-grid-lg * -1) 0;
+            }
+
+            &.l-fit-flush-top {
+                margin-top: ($v-grid-lg * -1);
             }
 
             .c-block-media-img {
