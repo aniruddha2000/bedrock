@@ -5,35 +5,36 @@
 $font-path: '/media/fonts';
 $image-path: '/media/protocol/img';
 
-@import '../../protocol/components/state-fxa';
-@import '../../../protocol/css/includes/lib';
-@import '../../../protocol/css/components/emphasis-box';
-@import '../../../protocol/css/components/feature-card';
-@import '../../../protocol/css/components/hero';
-@import '../../../protocol/css/components/menu-list';
-@import '../../../protocol/css/components/zap';
+@import '../../protocol/css/includes/lib';
+@import '../../protocol/css/components/emphasis-box';
+@import '../../protocol/css/components/feature-card';
+@import '../../protocol/css/components/menu-list';
+@import '../../protocol/css/components/zap';
 
-// vertical and horizontal grid spacing
+//* -------------------------------------------------------------------------- */
+// put spacing into variables so it's easier to adjust spacing at each break point
+
+// xs
 $v-grid-xs: $layout-xs;
 $h-grid-xs: $layout-lg;
 
+//md
 $v-grid-md: $layout-md;
 $h-grid-md: $layout-lg;
 
+//lg
 $v-grid-lg: $layout-lg;
 $h-grid-lg: $layout-xl;
+
+//* -------------------------------------------------------------------------- */
+// utility class
 
 .hidden {
     display: none !important; /* stylelint-disable-line declaration-no-important */
 }
 
 //* -------------------------------------------------------------------------- */
-// Protocol over-rides for the whole page
-
-.mzp-t-dark {
-    @include light-links;
-    color: $color-white;
-}
+// Protocol over-rides
 
 .mzp-c-menu-list {
     // match the bottom margin of <p>
@@ -54,17 +55,17 @@ main .mzp-l-content {
     padding-top: $v-grid-xs;
 
     @media #{$mq-md} {
-        padding-top: $v-grid-md;
         padding-bottom: $v-grid-md;
+        padding-top: $v-grid-md;
     }
 
     @media #{$mq-lg} {
-        padding-top: $v-grid-lg;
         padding-bottom: $v-grid-lg;
+        padding-top: $v-grid-lg;
     }
 }
 
-
+// make buttons in drop down menus look like links
 .c-menu-list-link {
     &,
     &.mzp-c-button.mzp-t-product {
@@ -85,12 +86,13 @@ main .mzp-l-content {
 }
 
 //* -------------------------------------------------------------------------- */
+// use block component for top banner
 // https://github.com/mozilla/protocol/issues/326
 
 .c-block {
+    overflow-x: hidden;
     padding: $v-grid-xs 0;
     position: relative;
-    overflow-x: hidden;
     text-align: center;
 
     h1 {
@@ -116,8 +118,8 @@ main .mzp-l-content {
 }
 
 .c-block-container {
-    @include clearfix();
     @include border-box;
+    @include clearfix();
     margin: 0 auto;
     max-width: $content-max;
     min-width: $content-xs;
@@ -141,8 +143,8 @@ main .mzp-l-content {
             (float, left, right),
             (text-align, left, right)
         ));
-        width: 50%;
         padding: 0 ($h-grid-lg / 2);
+        width: 50%;
     }
 }
 
@@ -159,8 +161,8 @@ main .mzp-l-content {
     @media #{$mq-lg} {
         @include border-box;
         @include bidi(((float, right, left),));
-        width: 50%;
         padding: 0 ($h-grid-lg / 2);
+        width: 50%;
     }
 }
 
@@ -170,21 +172,19 @@ main .mzp-l-content {
         @media #{$mq-lg} {
             // grid is all start/end based we don't need bidi declarations for RTL support \o/
             display: grid;
-            grid-template-columns: 480px auto;
-            grid-template-areas: "body media";
             grid-column-gap: $h-grid-lg;
+            grid-template-areas: "body media";
+            grid-template-columns: 480px auto;
             padding: $v-grid-lg $h-grid-lg;
         }
     }
+
     .c-block-body,
     .c-block-media {
-        // over-ride the styles that makes the float fallbacks work
         float: none;
         min-width: 0; //because of https://stackoverflow.com/questions/43311943/prevent-content-from-expanding-grid-items
-        /* stylelint-disable declaration-no-important */
-        padding: 0 !important;
-        width: auto !important;
-        /* stylelint-enable declaration-no-important */
+        padding: 0;
+        width: auto;
     }
 
     .c-block-body {
@@ -233,6 +233,7 @@ main .mzp-l-content {
 
 
 //* -------------------------------------------------------------------------- */
+// landing grid
 
 .c-landing-grid-item {
     margin-bottom: $layout-md * 2; // vertical spacing
@@ -255,8 +256,8 @@ main .mzp-l-content {
 
 .c-landing-grid-title {
     @include font-size(24px);
-    margin-top: $spacing-xl;
     margin-bottom: $spacing-md;
+    margin-top: $spacing-xl;
 
     a {
         color: $color-off-black;
@@ -325,16 +326,16 @@ main .mzp-l-content {
             grid-template-columns: repeat(2, minmax(0, 1fr) );
         }
 
+        // need to remove :after added by .mzp-l-content or we get an extra grid row
+        // added for clearfix purposes but grids don't need a clearfix
         .c-landing-grid:after {
-            // need to remove :after added by .mzp-l-content or we get an extra grid row
-            // added for clearfix purposes but grids don't need a clearfix
             content: none;
         }
 
         .c-landing-grid-item {
-            width: auto; // over-ride 50% width from float layout
-            margin-left: 0;
             margin-bottom: 0; // vertical spacing now set as row-gap instead of margin-bottom
+            margin-left: 0;
+            width: auto; // over-ride 50% width from float layout
         }
 
         .c-landing-grid-img {
@@ -357,6 +358,7 @@ main .mzp-l-content {
 }
 
 //* -------------------------------------------------------------------------- */
+// Download icon for "download for desktop" link
 
 @function download-arrow($color) {
     $svg: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"><g transform="translate(6.000000, 3.000000)" stroke="#{$color}" stroke-width="2"><path d="M0,18 L12,18"></path><polyline stroke-linejoin="round" points="0 8 6 14 12 8"></polyline><path d="M6,0 L6,14"></path></g></g></svg>';
@@ -369,8 +371,8 @@ $url-download-link: svg-url($download-link);
 $url-download-link-hover: svg-url($download-link-hover);
 
 .cta-download {
-    position: relative;
     padding-right: 24px;
+    position: relative;
 
     &:after {
         @include background-size(23px);
@@ -391,7 +393,10 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
-// app store links when user visits in apprpriate OS
+
+//* -------------------------------------------------------------------------- */
+// Mobile download links, show app store links when user is on mobile
+
 .appstore-android,
 .appstore-ios {
     display: none;
@@ -419,11 +424,12 @@ $url-download-link-hover: svg-url($download-link-hover);
 }
 
 //* -------------------------------------------------------------------------- */
+// dev tools block
 
 .t-dev {
     background-color: $color-gray-20;
-    padding: $layout-md;
     margin-top: $layout-md + $layout-2xl;
+    padding: $layout-md;
 
     .mzp-c-card-feature-title {
         @include visually-hidden;
@@ -452,9 +458,9 @@ $url-download-link-hover: svg-url($download-link-hover);
 
 @media #{$mq-sm} {
     .t-dev {
-        max-width: $content-xs;
         margin-left: auto;
         margin-right: auto;
+        max-width: $content-xs;
     }
 }
 
@@ -484,9 +490,13 @@ $url-download-link-hover: svg-url($download-link-hover);
 
 
 //* -------------------------------------------------------------------------- */
+// FxA account signup form
 
+// box around form
 .t-account {
+    @include light-links;
     background: linear-gradient($color-violet-50 -100%, $color-off-black);
+    color: $color-white;
     margin: 0 0 $layout-md 0;
     position: relative;
 
@@ -515,8 +525,7 @@ $url-download-link-hover: svg-url($download-link-hover);
     }
 }
 
-//* --- */
-
+// form
 .fxa-form-cta {
     @include text-body-xs;
     max-width: 560px;
@@ -586,6 +595,6 @@ $url-download-link-hover: svg-url($download-link-hover);
 }
 
 .account-signin {
-    margin-top: $spacing-xl;
     margin-bottom: 0;
+    margin-top: $spacing-xl;
 }

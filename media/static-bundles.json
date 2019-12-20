@@ -643,10 +643,10 @@
     },
     {
       "files": [
-        "css/firefox/browsers/browsers.scss",
+        "css/firefox/landing-grid.scss",
         "css/base/mozilla-lazy-image.scss"
       ],
-      "name": "firefox-browsers"
+      "name": "firefox-landing-grid"
     },
     {
       "files": [
@@ -1249,9 +1249,9 @@
         "js/base/mozilla-fxa-form-init.js",
         "js/base/mozilla-fxa-sign-in-link.js",
         "js/base/uitour-lib.js",
-        "js/firefox/browsers/browsers.js"
+        "js/firefox/landing-grid.js"
       ],
-      "name": "firefox-browsers"
+      "name": "firefox-landing-grid"
     },
     {
       "files": [

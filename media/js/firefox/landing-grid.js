@@ -11,12 +11,16 @@
     if (client.isFirefox && version >= '70') {
 
         var menuItem = document.getElementById('js-lockwise-desktop');
+        if(menuItem !== null) {
+            menuItem.classList.remove('hidden');
 
-        menuItem.classList.remove('hidden');
-
-        document.getElementById('lockwise-button').addEventListener('click', function() {
-            Mozilla.UITour.showHighlight('logins');
-        });
+            var lockwiseButton = document.getElementById('lockwise-button');
+            if(lockwiseButton !== null) {
+                lockwiseButton.addEventListener('click', function() {
+                    Mozilla.UITour.showHighlight('logins');
+                })
+            }
+        };
     }
 
     window.Mzp.Details.init('.mzp-c-menu-list-title');

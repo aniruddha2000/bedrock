@@ -12,7 +12,7 @@
 {% block page_desc %}{{ _('Firefox is more than a browser. Learn more about Firefox products that handle your data with respect and are built for privacy anywhere you go online.') }}{% endblock %}
 
 {% block page_css %}
-  {{ css_bundle('firefox-browsers') }}
+  {{ css_bundle('firefox-landing-grid') }}
 {% endblock %}
 
 {% set android_url = firefox_adjust_url('android', 'products-page') %}
@@ -108,7 +108,7 @@
   </div>
 
   <div class="mzp-l-content is-js-dependent">
-    <div class="mzp-c-emphasis-box mzp-t-dark t-account">
+    <div class="mzp-c-emphasis-box t-account">
       <div class="fxa-form-cta">
         {{ fxa_email_form(
           entrypoint=_entrypoint,
@@ -131,7 +131,7 @@
 {% endblock %}
 
 {% block js %}
-  {{ js_bundle('firefox-browsers') }}
+  {{ js_bundle('firefox-landing-grid') }}
 {% endblock %}
 
 {% block structured_data %}
